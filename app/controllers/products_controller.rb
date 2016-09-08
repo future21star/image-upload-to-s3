@@ -60,7 +60,6 @@ class ProductsController < ApplicationController
     remove_images
     respond_to do |format|
       if @product.update(product_params)
-        debugger
         if params[:remove] == '1'
           format.html { redirect_to edit_product_path(@product) }
         else
