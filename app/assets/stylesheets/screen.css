@@ -1,0 +1,62 @@
+.progress {
+  max-width: 600px;
+  margin:    0.2em 0 0.2em 0;
+}
+
+.progress .bar {
+  height:  1.2em;
+  padding-left: 0.2em;
+  color:   white;
+  display: none;
+}
+
+.app-link{
+  display:block;
+  float:left;
+  position:relative;
+  width:33%;
+  
+  background: url(image-view.png);
+  width: 80px;
+  height: 80px;
+  background-size: 80px 80px;
+  background-repeat: no-repeat;
+  margin-bottom: 0px;
+}
+.individual-images{
+  width: 300px;
+  height:300px;
+}
+.image-view{
+  background: url(image-view.png);
+  width:320px;
+  height: 320px;
+  background-size: 320px 320px;
+  background-repeat: no-repeat;
+}
+.image-upload div{
+  float:left;
+  clear:none;
+}
+.add-image{
+  width:160px;
+  cursor:pointer;
+
+  background: url(add-image.png);
+  background-size: 160px 80px;
+  background-repeat: no-repeat;
+}
+.file_upload_label{
+  display:none;
+}
+input.file_upload_submit{
+  display:none;
+}
+.del_photo {
+  display: inline-block;
+  float:right;
+  margin:5px 5px 0 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

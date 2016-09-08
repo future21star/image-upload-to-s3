@@ -1,0 +1,83 @@
+<%= form_for(product, html: { class: 'directUpload form-horizontal', data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } }) do |f| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :name%>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_field :name %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :price %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_field :price %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :description %>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_field :description %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2">
+      <%= f.label :location%>
+    </div>
+    <div class="col-sm-10">
+      <%= f.text_field :location %>
+    </div>
+  </div>
+
+  <div class="image-upload">
+    <div class="image-view">
+      <img src="" class="image-view-src" width="320" height="320">
+    </div>
+    <div class="individual-images">
+      <% (0..9).each do |i| %>
+        <div class="app-link article-icon field">
+          <% if !product.uploaded_images || !product.uploaded_images[i.to_s] || product.uploaded_images[i.to_s] == '' %>
+            <%= f.label 'uploaded_images[' + i.to_s + ']', class: :file_upload_label %>
+            <%= f.file_field 'uploaded_images[' + i.to_s + ']', class: :file_upload_submit, :id =>  'uploaded_images[' + i.to_s + ']' %>
+            <a href="#" class="del_photo" id="" style="display:none;"><%= image_tag "del.png", border:"0", size:"10x10", id: "remove_image"%></a>
+          <% else %>
+            <%= image_tag product.uploaded_images[i.to_s], class: :uploaded_image, size: "80x80" %>
+            <input type="hidden" name="product[uploaded_images[<%=i%>]]" id="product[uploaded_images[<%=i%>]]" value="<%=product.uploaded_images[i.to_s]%>">
+            <a href="#" class="del_photo" id=""><%= image_tag "del.png", border:"0", size:"10x10", id: "remove_image"%></a>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="app-link article-icon add-image"> 
+        <input type="hidden" class="add-image-value" value="<%=@current_order%>">        
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<style>
+input[type="file"] {
+  display: none;
+}
+</style>
